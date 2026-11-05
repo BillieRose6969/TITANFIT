@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITANFIT | Entrenamiento de Élite & App de Clientes</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#a3e635',      // Lime 400
+                        neonHover: '#84cc16', // Lime 500
+                        neonDim: 'rgba(163, 230, 53, 0.12)',
+                        darkBg: '#09090b',
+                        cardBg: '#141417',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            background-color: #09090b;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .neon-text {
+            color: #a3e635;
+            text-shadow: 0 0 18px rgba(163, 230, 53, 0.35);
+        }
+
+        .neon-button {
+            background-color: #a3e635;
+            color: #09090b;
+            box-shadow: 0 0 20px rgba(163, 230, 53, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .neon-button:hover {
+            background-color: #bef264;
+            box-shadow: 0 0 30px rgba(163, 230, 53, 0.55);
+            transform: translateY(-2px);
+        }
+
+        .program-card {
+            transition: all 0.35s ease;
+        }
+        
+        .program-card:hover {
+            border-color: #a3e635;
+            box-shadow: 0 12px 35px rgba(163, 230, 53, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(163, 230, 53, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 80% 60%, rgba(163, 230, 53, 0.08) 0%, transparent 50%);
+        }
+
+        .titan-grid-bg {
+            background-size: 24px 24px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .cyber-card {
+            background: linear-gradient(145deg, rgba(28, 28, 34, 0.9) 0%, rgba(16, 16, 20, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+        }
+
+        .cyber-card-neon {
+            background: linear-gradient(135deg, rgba(163, 230, 53, 0.14) 0%, rgba(20, 20, 24, 0.95) 65%);
+            border: 1px solid rgba(163, 230, 53, 0.35);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neon selection:text-black">
+
+    <!-- BARRA DE NAVEGACIÓN COMERCIAL -->
+    <nav class="fixed w-full z-40 bg-darkBg/90 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2.5 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/40 flex items-center justify-center">
+                        <i class="ph-fill ph-barbell text-2xl neon-text"></i>
+                    </div>
+                    <div>
+                        <span class="font-black text-xl tracking-wider uppercase block leading-none">TITAN<span class="neon-text">FIT</span></span>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase block mt-0.5">Performance Club</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#ecosystem" class="text-sm text-gray-300 hover:text-neon transition-colors font-medium">Ecosistema</a>
+                    <a href="#programs" class="text-sm text-gray-300 hover:text-neon transition-colors font-medium">Programas A/B/C/D</a>
+                    <a href="#mobile-app" class="text-sm text-gray-300 hover:text-neon transition-colors font-medium">App Móvil</a>
+                    <a href="#booking" class="text-sm text-gray-300 hover:text-neon transition-colors font-medium">Inscripción</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="#booking" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl neon-button font-bold text-xs sm:text-sm uppercase tracking-wider">
+                        <span>Empezar Ahora</span>
+                        <i class="ph-bold ph-arrow-right text-base"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LANDING PAGE HERO (100% Independiente de la App) -->
+    <header class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 hero-bg overflow-hidden border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-semibold uppercase tracking-widest mb-6">
+                        <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
+                        Entrenamiento Personalizado de Alto Rendimiento
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 uppercase leading-[1.05]">
+                        Forja Tu <span class="neon-text">Físico</span>.<br>
+                        Domina Tu <span class="underline decoration-neon/50 decoration-4 underline-offset-8">Progreso</span>.
+                    </h1>
+
+                    <p class="mt-4 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-8 font-normal leading-relaxed">
+                        Planificación de hipertrofia y fuerza basada en evidencia científica. Seguimiento personalizado en sala, control biométrico <span class="text-neon">TitanBody</span> y plataforma móvil exclusiva para miembros.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#booking" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-extrabold rounded-xl neon-button uppercase tracking-wide">
+                            Solicitar Entrevista Inicial <i class="ph-bold ph-arrow-right ml-2 text-lg"></i>
+                        </a>
+                        <a href="#programs" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 text-base font-bold rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/15 transition-all">
+                            Conocer Programas
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mockup Visual Ilustrativo de la App (Estático Comercial + Aviso de Tiendas) -->
+                <div id="mobile-app" class="lg:col-span-5 flex flex-col items-center">
+                    <div class="w-full max-w-sm bg-zinc-950 border border-white/15 rounded-[2.5rem] p-3.5 shadow-[0_0_70px_rgba(163,230,53,0.15)] relative">
+                        <div class="w-24 h-4 bg-black rounded-full mx-auto mb-3 border border-white/5 flex items-center justify-end px-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500/60"></span>
+                        </div>
+
+                        <div class="bg-darkBg titan-grid-bg rounded-[2rem] p-4 border border-white/10 space-y-3.5">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-9 h-9 rounded-xl bg-neon text-black font-black flex items-center justify-center text-xs shadow">AD</div>
+                                    <div>
+                                        <span class="text-[10px] font-bold text-neon uppercase tracking-widest block">TITANFIT OS • MIEMBRO</span>
+                                        <h4 class="font-black text-white text-sm leading-tight">Alumno Demo</h4>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 text-[10px] font-bold text-neon rounded-lg">APP V1.0</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2.5">
+                                <div class="cyber-card rounded-2xl p-3">
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase">Recuperación</span>
+                                    <p class="text-2xl font-black text-white mt-1">92<span class="text-xs text-neon">%</span></p>
+                                    <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">SNC Óptimo</p>
+                                </div>
+                                <div class="cyber-card rounded-2xl p-3">
+                                    <span class="text-[10px] font-bold text-cyan-400 uppercase">Creatina 5g</span>
+                                    <p class="text-sm font-black text-white mt-1.5">Stack Diario ✓</p>
+                                    <div class="w-full h-1.5 bg-zinc-800 rounded-full mt-2 overflow-hidden">
+                                        <div class="bg-cyan-400 h-full w-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cyber-card-neon rounded-2xl p-4">
+                                <span class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-neon text-black">RUTINA INTERACTIVA</span>
+                                <h4 class="font-black text-white text-base mt-1">SPLITS A / B / C / D</h4>
+                                <p class="text-xs text-gray-300 mt-1">Control de cargas, cronómetro de descanso y evolución corporal sincronizada con tu coach.</p>
+                            </div>
+
+                            <!-- Badge de Google Play (Listo para cuando se suba la app a la tienda) -->
+                            <div class="pt-1">
+                                <div class="w-full py-3 px-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="ph-fill ph-google-play-logo text-2xl text-neon"></i>
+                                        <div class="text-left">
+                                            <span class="text-[9px] uppercase tracking-widest text-gray-400 block">App Exclusiva Alumnos</span>
+                                            <span class="text-xs font-bold text-white">Próximamente en Google Play</span>
+                                        </div>
+                                    </div>
+                                    <span class="px-2 py-0.5 rounded bg-neon/15 text-neon text-[10px] font-bold">Pronto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN ECOSISTEMA -->
+    <section id="ecosystem" class="py-24 bg-darkBg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-neon text-xs font-bold uppercase tracking-widest">Tecnología de Punta</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight mt-2">Todo lo que tu <span class="neon-text">Entrenamiento</span> Necesita</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="program-card bg-cardBg border border-white/10 rounded-3xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon text-2xl mb-6">
+                            <i class="ph-fill ph-device-mobile"></i>
+                        </div>
+                        <h3 class="text-xl font-black mb-3">App Exclusiva para Alumnos</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Lleva tus rutinas A/B/C/D en el bolsillo con cronómetro de descanso automático, registro de cargas en kg y control de series.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="program-card bg-cardBg border border-white/10 rounded-3xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon text-2xl mb-6">
+                            <i class="ph-fill ph-scales"></i>
+                        </div>
+                        <h3 class="text-xl font-black mb-3">TitanBody Bioimpedancia</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Controles periódicos de masa muscular esquelética, porcentaje de grasa real e hidratación celular sin adivinanzas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="program-card bg-cardBg border border-white/10 rounded-3xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-neon/10 border border-neon/30 flex items-center justify-center text-neon text-2xl mb-6">
+                            <i class="ph-fill ph-trophy"></i>
+                        </div>
+                        <h3 class="text-xl font-black mb-3">Ranking & Clan Titan</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Compite sanamente en la tabla de tonelaje acumulado mensual y participa en los desafíos del escuadrón.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PROGRAMAS -->
+    <section id="programs" class="py-24 bg-cardBg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-neon text-xs font-bold uppercase tracking-widest">Metodología Comprobada</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-wide mt-2">Programas <span class="neon-text">A / B / C / D</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-darkBg border border-gray-800 rounded-3xl p-8 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-3">Split de Hipertrofia</h3>
+                    <p class="text-gray-400 flex-grow mb-6 text-sm">Rutinas de 4 días (Splits A/B/C/D) divididas estratégicamente por grupos musculares para máxima sobrecarga progresiva y tensión mecánica.</p>
+                    <a href="#booking" class="block text-center py-3 rounded-xl bg-white/5 hover:bg-neon hover:text-black font-bold text-xs uppercase tracking-wider transition-all border border-white/10">
+                        Consultar Cupos
+                    </a>
+                </div>
+
+                <div class="bg-darkBg border border-gray-800 rounded-3xl p-8 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-3">Fuerza & Potencia</h3>
+                    <p class="text-gray-400 flex-grow mb-6 text-sm">Enfocado en romper tus marcas personales en ejercicios básicos con periodización de cargas y control estricto de los tiempos de descanso.</p>
+                    <a href="#booking" class="block text-center py-3 rounded-xl bg-white/5 hover:bg-neon hover:text-black font-bold text-xs uppercase tracking-wider transition-all border border-white/10">
+                        Consultar Cupos
+                    </a>
+                </div>
+
+                <div class="bg-darkBg border border-gray-800 rounded-3xl p-8 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-3">Nutrición y Creatina</h3>
+                    <p class="text-gray-400 flex-grow mb-6 text-sm">Optimización de tu ventana post-entrenamiento, protocolo de suplementación con monohidrato de creatina y seguimiento antropométrico.</p>
+                    <a href="#booking" class="block text-center py-3 rounded-xl bg-white/5 hover:bg-neon hover:text-black font-bold text-xs uppercase tracking-wider transition-all border border-white/10">
+                        Consultar Cupos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARIO DE INSCRIPCIÓN / CRM -->
+    <section id="booking" class="py-24 bg-darkBg relative">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-cardBg border border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl relative">
+                <span class="text-neon text-xs font-bold uppercase tracking-widest">Inscripción Abierta</span>
+                <h2 class="text-3xl font-black mt-1 mb-2 uppercase">Solicita Tu <span class="neon-text">Matrícula</span></h2>
+                <p class="text-gray-400 mb-8 text-sm">Completa tus datos para recibir tus accesos a la App TitanFit y coordinar tu primer análisis corporal.</p>
+                
+                <form id="leadForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Nombre y Apellido</label>
+                            <input type="text" id="name" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-neon text-sm" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Correo o WhatsApp</label>
+                            <input type="email" id="email" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-neon text-sm" placeholder="juan@ejemplo.com">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="goal" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Objetivo Principal</label>
+                        <select id="goal" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-neon text-sm">
+                            <option value="" disabled selected>Selecciona tu meta...</option>
+                            <option value="Hipertrofia (Split A/B/C/D)">Ganar Masa Muscular (Split A/B/C/D)</option>
+                            <option value="Fuerza + Bioimpedancia TitanBody">Fuerza y Potencia + TitanBody Scan</option>
+                            <option value="Definición y Recomposición Corporal">Definición y Recomposición Corporal</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl neon-button font-extrabold text-base uppercase tracking-wider mt-4">
+                        Enviar Solicitud
+                    </button>
+                </form>
+
+                <div id="successMessage" class="hidden mt-6 p-4 bg-neon/10 border border-neon rounded-xl text-center">
+                    <p class="text-neon font-semibold text-sm">¡Solicitud enviada con éxito! Nos pondremos en contacto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CANDADO CRM -->
+    <footer class="bg-black py-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-barbell text-xl neon-text"></i>
+                <p class="text-gray-500 text-sm">© 2026 TITANFIT Performance Club. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="flex space-x-4 items-center">
+                <span class="text-xs text-gray-500">Acceso Entrenador</span>
+                <button id="adminToggleBtn" class="text-gray-700 hover:text-neon transition-colors p-2 rounded-lg bg-white/5" title="Acceso CRM Entrenador">
+                    <i class="ph-fill ph-lock-key text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PANEL CRM OCULTO -->
+    <section id="adminDashboard" class="hidden bg-zinc-950 py-16 border-t-4 border-neon">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-2xl font-black uppercase flex items-center gap-2">
+                        <i class="ph-fill ph-database text-neon"></i> Panel CRM de Alumnos
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-1">Sincronizado en tiempo real.</p>
+                </div>
+                <button id="closeAdminBtn" class="text-gray-400 hover:text-white bg-gray-800 p-2.5 rounded-xl">
+                    <i class="ph-bold ph-x text-xl"></i>
+                </button>
+            </div>
+
+            <div class="overflow-x-auto bg-cardBg rounded-2xl border border-gray-800 shadow-xl">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-900 border-b border-gray-800">
+                            <th class="px-6 py-4 font-bold text-xs text-gray-400 uppercase">Fecha</th>
+                            <th class="px-6 py-4 font-bold text-xs text-gray-400 uppercase">Prospecto</th>
+                            <th class="px-6 py-4 font-bold text-xs text-gray-400 uppercase">Contacto</th>
+                            <th class="px-6 py-4 font-bold text-xs text-gray-400 uppercase">Objetivo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsTableBody" class="divide-y divide-gray-800">
+                        <tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">Cargando prospectos...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT FIREBASE CRM -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'demo-pt-app';
+        const fallbackConfig = { apiKey: "demo", authDomain: "demo.firebaseapp.com", projectId: "demo" };
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : fallbackConfig;
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const form = document.getElementById('leadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const tableBody = document.getElementById('leadsTableBody');
+        const adminSection = document.getElementById('adminDashboard');
+        const adminToggleBtn = document.getElementById('adminToggleBtn');
+        const closeAdminBtn = document.getElementById('closeAdminBtn');
+
+        const formatDate = (ts) => ts ? new Date(ts).toLocaleString() : 'N/A';
+
+        const renderTable = (leads) => {
+            tableBody.innerHTML = '';
+            if(leads.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">Aún no hay prospectos.</td></tr>`;
+                return;
+            }
+            leads.forEach(l => {
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-gray-800/50">
+                        <td class="px-6 py-4 text-xs text-gray-400">${formatDate(l.timestamp)}</td>
+                        <td class="px-6 py-4 text-sm font-bold text-white">${l.name}</td>
+                        <td class="px-6 py-4 text-sm text-gray-400">${l.email}</td>
+                        <td class="px-6 py-4 text-sm text-neon font-semibold">${l.goal}</td>
+                    </tr>
+                `;
+            });
+        };
+
+        async function init() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                if (!auth.currentUser) return;
+
+                const leadsCol = collection(db, 'artifacts', appId, 'public', 'data', 'leads');
+                onSnapshot(leadsCol, (snap) => {
+                    const leads = [];
+                    snap.forEach(d => leads.push({ id: d.id, ...d.data() }));
+                    leads.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    renderTable(leads);
+                });
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    submitBtn.textContent = 'Enviando...';
+                    submitBtn.disabled = true;
+                    await addDoc(leadsCol, {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        goal: document.getElementById('goal').value,
+                        timestamp: Date.now()
+                    });
+                    form.reset();
+                    submitBtn.textContent = 'Enviar Solicitud';
+                    submitBtn.disabled = false;
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => successMessage.classList.add('hidden'), 4000);
+                });
+            } catch(err) { console.error(err); }
+        }
+
+        adminToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            adminSection.classList.remove('hidden');
+            adminSection.scrollIntoView({ behavior: 'smooth' });
+        });
+        closeAdminBtn.addEventListener('click', () => adminSection.classList.add('hidden'));
+        init();
+    </script>
+</body>
+</html>
